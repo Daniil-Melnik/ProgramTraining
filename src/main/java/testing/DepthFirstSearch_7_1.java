@@ -5,45 +5,68 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Stack;
 import java.util.HashSet;
+import java.util.HashMap;
+import java.util.TreeSet;
 import java.util.stream.Collectors;
 
-public class DepthFirstSearch_7 {
+public class DepthFirstSearch_7_1 {
     public static void main(String[] args) throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
+
+        Stack<Vertex> wayStack = new Stack<>();
+        HashSet<Vertex> visetedVertexes = new HashSet<>();
 
         String nVertexesEdges = reader.readLine();
         int nVertexes = Integer.parseInt(nVertexesEdges.split(" ")[0]);
         int nEdges = Integer.parseInt(nVertexesEdges.split(" ")[1]);
 
         HashMap<String, Vertex> vertexes = new HashMap<>(nVertexes);
-        ArrayList<Edge> edges = new ArrayList<>(nEdges);
 
         for (int i = 0; i < nEdges; i++){
             String edgeString = reader.readLine();
             String s = edgeString.split(" ")[0];
             String e = edgeString.split(" ")[1];
-            edges.add(new Edge(s, e));
 
             vertexes.putIfAbsent(s, new Vertex(s));
             vertexes.putIfAbsent(e, new Vertex(e));
-        }
-        System.out.println(vertexes);
-        System.out.println(edges);
 
-        for (Edge edge : edges){
-            vertexes.get(edge.getStart()).addNeibor(vertexes.get(edge.getEnd()));
-            vertexes.get(edge.getEnd()).addNeibor(vertexes.get(edge.getStart()));
-        }
-
-        for (Vertex vertex : vertexes.values()){
-            System.out.println(vertex.toString());
+            vertexes.get(s).addNeibor(vertexes.get(e));
+            vertexes.get(e).addNeibor(vertexes.get(s));
         }
 
         reader.close();
+
+        if (vertexes.get("1") == null){ // вершина ни с кем не соединена и не фигурирует в списке рёбер => компонент-одиночка
+            writer.write("1\n1");
+            writer.close();
+            return;
+        }
+
+        visetedVertexes.add(vertexes.get("1"));
+
+        vertexes.get("1").getNeibors().stream()
+                .filter(v -> !visetedVertexes.contains(v))
+                .forEach(wayStack::add);
+
+        while (!wayStack.isEmpty()) {
+            Vertex currVertex = wayStack.pop();
+            if (visetedVertexes.contains(currVertex)) continue;
+            visetedVertexes.add(currVertex);
+            currVertex.getNeibors().stream().filter(v -> !visetedVertexes.contains(v)).forEach(wayStack::add);
+        }
+
+        //StringBuilder result = new StringBuilder();
+
+        TreeSet<Integer> resultSet = visetedVertexes.stream()
+                .map(v -> Integer.parseInt(v.getName()))
+                .collect(Collectors.toCollection(TreeSet::new));
+
+        String result = resultSet.stream().map(String::valueOf).collect(Collectors.joining(" "));
+
+        writer.write(String.format("%d\n%s", visetedVertexes.size(), result));
         writer.close();
     }
 
@@ -57,6 +80,10 @@ public class DepthFirstSearch_7 {
 
         public void addNeibor(Vertex n){
             neibors.add(n);
+        }
+
+        public HashSet<Vertex> getNeibors(){
+            return this.neibors;
         }
 
         public String getName(){return name;}
