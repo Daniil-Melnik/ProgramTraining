@@ -79,25 +79,48 @@ public class GraphGraph {
 
     private List<String> renderTree(Node root){
         List<String> lines = new ArrayList<>();
-        renderNode(root, lines, 0);
+        renderNode(root, lines, 0, new ArrayList<>(), new ArrayList<>(List.of(0)));
         return lines;
     }
 
-    private void renderNode(Node node, List<String> accum, int depth){
+    private void renderNode(Node node, List<String> accum, int depth, List<Boolean> hasBrother, List<Integer> parenPrefixLensSize){
         StringBuilder prefix = new StringBuilder();
-        prefix.repeat(' ', depth*3).append(node.name);
         int nChildren = node.children.size();
-        //System.out.println(nChildren);
-        //if (nChildren > 0) prefix.append("---+");
+        hasBrother.add(nChildren > 0);
+        parenPrefixLensSize.add(3);
+
+        //prefix.repeat(' ', depth * 3);
+        System.out.println(parenPrefixLensSize);
+
+        for (int i = 0; i < depth; i++){
+            if (i == 0){
+                prefix.append(" ".repeat(3));
+            } else {
+                if (hasBrother.get(i - 1)){
+                    prefix.append('|'); // не хвтает условия на дорисовку (неотрисовку для последнего)
+                    prefix.append(" ".repeat(parenPrefixLensSize.get(i) - 1));
+                } else {
+                    prefix.append(" ".repeat(parenPrefixLensSize.get(i)));
+                }
+            }
+
+        }
+
+        prefix.append(node.name);
+
         if (nChildren > 0) prefix.append("--+");
+
         accum.add(prefix.toString());
+
+
+
         for (int i = 0; i < nChildren; i++){
-            renderNode(node.children.get(i), accum, depth + 1);
+            renderNode(node.children.get(i), accum, depth + 1, hasBrother, parenPrefixLensSize);
         }
     }
 
     public static void main(String ... args){
-        String input = "(1 (2 (3 4 5 (6) 8) 9))";
+        String input = "(1 (2 (4 5 6 (7) 8 (9)) 3))";
         int [] pos = {0};
         GraphGraph g = new GraphGraph();
         Node root = g.parseNode(input, pos);
