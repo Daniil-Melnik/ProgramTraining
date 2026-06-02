@@ -31,7 +31,6 @@ public class GraphGraph {
     private String parseNum(String s, int[] pos){
         int start = pos[0];
         while (pos[0] < s.length() && Character.isDigit(s.charAt(pos[0]))){
-            //System.out.println(s.charAt(pos[0]));
             pos[0]++;
         }
         if (start == pos[0]){
@@ -83,7 +82,6 @@ public class GraphGraph {
         Map<Integer, Integer> maxLensByDepth = new HashMap<>();
         List<String> lines = new ArrayList<>();
         getMaxLensByDepth(root, maxLensByDepth, 0);
-        System.out.println(maxLensByDepth);
         renderNode(root, lines, 0, new ArrayList<>(), new ArrayList<>(), maxLensByDepth);
         return lines;
     }
@@ -106,16 +104,11 @@ public class GraphGraph {
         StringBuilder prefix = new StringBuilder();
         int nChildren = node.children.size();
 
-
-        //prefix.repeat(' ', depth * 3);
-        //System.out.println(parenPrefixLensSize);
-
-        for (int i = 0; i < depth; i++){
+        for (int i = 0; i < parenPrefixLensSize.size(); i++){
             if (i == 0){
                 prefix.append(" ".repeat(parenPrefixLensSize.get(i)));
             } else {
                 if (hasBrother.get(i - 1)){
-
                     prefix.append('|'); // не хвтает условия на дорисовку (неотрисовку для последнего)
                     prefix.append(" ".repeat(parenPrefixLensSize.get(i) - 1));
 
@@ -128,9 +121,10 @@ public class GraphGraph {
 
         prefix.append(node.name);
 
-        int nDashes = maxLensByDepth.get(depth) + 4 - node.name.length();
-
-        if (nChildren > 0) prefix.append("-".repeat(nDashes - 1)).append("+");
+        if (nChildren > 0) {
+            int nDashes = maxLensByDepth.get(depth) + 4 - node.name.length();
+            prefix.append("-".repeat(nDashes - 1)).append("+");
+        }
 
         accum.add(prefix.toString());
 

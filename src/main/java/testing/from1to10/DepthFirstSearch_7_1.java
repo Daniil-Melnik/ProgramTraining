@@ -1,4 +1,4 @@
-package testing;
+package testing.from1to10;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;

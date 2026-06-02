@@ -1,13 +1,12 @@
-package testing;
+package testing.from1to10;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.util.Arrays;
 
-public class CheapestWay_2 {
+public class KnightsMove_4 {
     public static void main(String[] args) throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
@@ -18,25 +17,23 @@ public class CheapestWay_2 {
         int w = Integer.parseInt(hwStr.split(" ")[1]);
 
         int [][] cells = new int[h][w];
-        int [][] dps = new int[h][w];
+        int [][] costs = new int[h][w];
 
-        for (int i = 0; i < h; i++){
-            cells[i] = Arrays.stream(reader.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
-        }
+        costs[0][0] = 1;
 
         for (int i = 0; i < h; i++){
             for (int j = 0; j < w; j++){
-                if ((i > 0) && (j > 0)){
-                    dps[i][j] = cells[i][j] + Math.min(dps[i-1][j], dps[i][j-1]);
+                if (i - 2 >= 0 && j - 1 >= 0){
+                    costs[i][j] += costs[i-2][j-1];
                 }
-                else if ((i == 0) && (j == 0)) { dps[i][j] = cells[i][j];}
-                else if ((i == 0) && (j > 0)){ dps[i][j] = cells[i][j] + dps[i][j-1];}
-                else if ((i > 0) && (j == 0)){ dps[i][j] = cells[i][j] + dps[i-1][j];}
-                else {}
+                if (i - 1 >= 0 && j - 2 >= 0){
+                    costs[i][j] += costs[i-1][j-2];
+                }
             }
         }
 
-        writer.write(String.valueOf(dps[h-1][w-1]));
+        writer.write(String.valueOf(costs[h-1][w-1]));
+
         reader.close();
         writer.close();
     }

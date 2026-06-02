@@ -1,4 +1,4 @@
-package testing;
+package testing.from1to10;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -8,8 +8,7 @@ import java.io.OutputStreamWriter;
 import java.util.*;
 import java.util.stream.Collectors;
 
-
-public class DepthFirstSearch_7_3 {
+public class DepthFirstSearch_7_2 {
     public static void main(String[] args) throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
@@ -19,8 +18,10 @@ public class DepthFirstSearch_7_3 {
         int M = NMData[1];
 
         Set<Integer> visited = new TreeSet<>();
-        List<List<Integer>> adjList = new ArrayList<>(N);
+        Set<Integer> vertexes = new HashSet<>();
+        Stack<Integer> wayStack = new Stack<>();
 
+        List<List<Integer>> adjList = new ArrayList<>(N);
         for (int i = 0; i < N; i++){
             adjList.add(new ArrayList<>());
         }
@@ -32,19 +33,18 @@ public class DepthFirstSearch_7_3 {
         }
         reader.close();
 
-        DFS(visited, 0, adjList);
+        visited.add(0);
+        wayStack.addAll(adjList.get(0).stream().filter(v -> !wayStack.contains(v)).collect(Collectors.toCollection(ArrayList::new)));
+        while (!wayStack.isEmpty()){
+            int currVertex = wayStack.pop();
+            wayStack.addAll(adjList.get(currVertex).stream().filter(v ->
+                    !wayStack.contains(v) && !visited.contains(v))
+                    .collect(Collectors.toCollection(ArrayList::new)));
+            visited.add(currVertex);
 
-        String result = visited.stream().map(v -> String.valueOf(v + 1)).collect(Collectors.joining(" "));
-        writer.write(String.format("%s\n%s", visited.size(), result));
-        writer.close();
-    }
-
-    private static void DFS(Set<Integer> visited, int currentVertex, List<List<Integer>> adjList){
-        visited.add(currentVertex);
-        for (int v : adjList.get(currentVertex)){
-            if (!visited.contains(v)){
-                DFS(visited, v, adjList);
-            }
         }
+
+        writer.write(String.format("%s\n%s", visited.size(), visited.stream().map(v -> String.valueOf(v + 1)).collect(Collectors.joining(" "))));
+        writer.close();
     }
 }
