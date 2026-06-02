@@ -79,15 +79,19 @@ public class GraphGraph {
 
     private List<String> renderTree(Node root){
         List<String> lines = new ArrayList<>();
-        renderNode(root, lines, 0, new ArrayList<>(), new ArrayList<>(List.of(0)));
+        renderNode(root, lines, 0, new ArrayList<>(), new ArrayList<>());
         return lines;
     }
 
-    private void renderNode(Node node, List<String> accum, int depth, List<Boolean> hasBrother, List<Integer> parenPrefixLensSize){
+    private void renderNode(Node node,
+                            List<String> accum,
+                            int depth,
+                            List<Boolean> hasBrother,
+                            List<Integer> parenPrefixLensSize
+    ){
         StringBuilder prefix = new StringBuilder();
         int nChildren = node.children.size();
-        hasBrother.add(nChildren > 0);
-        parenPrefixLensSize.add(3);
+
 
         //prefix.repeat(' ', depth * 3);
         System.out.println(parenPrefixLensSize);
@@ -97,8 +101,10 @@ public class GraphGraph {
                 prefix.append(" ".repeat(3));
             } else {
                 if (hasBrother.get(i - 1)){
+
                     prefix.append('|'); // не хвтает условия на дорисовку (неотрисовку для последнего)
                     prefix.append(" ".repeat(parenPrefixLensSize.get(i) - 1));
+
                 } else {
                     prefix.append(" ".repeat(parenPrefixLensSize.get(i)));
                 }
@@ -112,10 +118,16 @@ public class GraphGraph {
 
         accum.add(prefix.toString());
 
-
-
         for (int i = 0; i < nChildren; i++){
-            renderNode(node.children.get(i), accum, depth + 1, hasBrother, parenPrefixLensSize);
+            List<Boolean> newHasBrother = new ArrayList<>(hasBrother);
+            newHasBrother.add(i != nChildren - 1);
+
+            List<Integer> newParenPrefixLensSize = new ArrayList<>(parenPrefixLensSize);
+            newParenPrefixLensSize.add(3);
+
+            Node child = node.children.get(i);
+
+            renderNode(child, accum, depth + 1, newHasBrother, newParenPrefixLensSize);
         }
     }
 
