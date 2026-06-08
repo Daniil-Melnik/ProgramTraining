@@ -89,22 +89,22 @@
     </tr>
     <tr>
       <td>11</td>
-      <td></td>
-      <td><a href="https://coderun.yandex.ru/problem/cycle-search">/problem/</a></td>
+      <td>Поиск цикла</td>
+      <td><a href="https://coderun.yandex.ru/problem/cycle-search">/problem/cycle-search</a></td>
       <td><a href="">Условие</a></td>
       <td><a href="src/main/java/testing/from11to20/CycleSearch_11.java">Код</a></td>
     </tr>
     <tr>
       <td>12</td>
-      <td></td>
-      <td><a href="">/problem/</a></td>
+      <td>Длина кратчайшего пути</td>
+      <td><a href="https://coderun.yandex.ru/problem/shortest-path-length">/problem/shortest-path-length</a></td>
       <td><a href="">Условие</a></td>
       <td><a href="src/main/java/testing/from11to20/MinimalPath_12.java">Код</a></td>
     </tr>
     <tr>
       <td>13</td>
-      <td></td>
-      <td><a href="">/problem/</a></td>
+      <td>Путь в графе</td>
+      <td><a href="https://coderun.yandex.ru/problem/the-path-in-the-graph">/problem/the-path-in-the-graph</a></td>
       <td><a href="">Условие</a></td>
       <td><a href="src/main/java/testing/from11to20/MinimalPathFull_13.java">Код</a></td>
     </tr>
