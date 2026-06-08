@@ -1,190 +1,49 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>1. Средний элемент — задача</title>
-    <!-- Подсветка кода через highlight.js (опционально, для красоты) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
-    <script>hljs.highlightAll();</script>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+1. Средний элемент
 
-        body {
-            background-color: #f6f8fa;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-            line-height: 1.6;
-            color: #1f2328;
-            padding: 2rem 1rem;
-        }
+Рассмотрим три числа a, b и c. Упорядочим их по возрастанию.
+Какое число будет стоять между двумя другими?
+Решение этой задачи на С++ могло бы выглядеть так:
 
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            background-color: #ffffff;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-            padding: 2rem 2rem 2.5rem 2rem;
-        }
-
-        h1 {
-            font-size: 2rem;
-            font-weight: 600;
-            border-bottom: 1px solid #d0d7de;
-            padding-bottom: 0.3rem;
-            margin-bottom: 1.2rem;
-        }
-
-        h2 {
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-top: 1.8rem;
-            margin-bottom: 0.8rem;
-            border-bottom: 1px solid #eaeef2;
-            padding-bottom: 0.2rem;
-        }
-
-        h3 {
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-top: 1.4rem;
-            margin-bottom: 0.5rem;
-        }
-
-        p {
-            margin-bottom: 1rem;
-        }
-
-        code {
-            font-family: "SF Mono", Monaco, "Cascadia Code", "Roboto Mono", Consolas, monospace;
-            background-color: #f6f8fa;
-            padding: 0.2rem 0.4rem;
-            border-radius: 6px;
-            font-size: 0.9rem;
-            color: #d14;
-        }
-
-        pre {
-            background-color: #f6f8fa;
-            border-radius: 8px;
-            padding: 1rem;
-            overflow-x: auto;
-            margin: 1rem 0;
-            font-size: 0.85rem;
-            line-height: 1.45;
-        }
-
-        pre code {
-            background-color: transparent;
-            padding: 0;
-            color: #1f2328;
-            font-size: 0.85rem;
-        }
-
-        .example {
-            background-color: #f8f9fb;
-            border-left: 4px solid #0969da;
-            padding: 1rem 1.2rem;
-            margin: 1.5rem 0;
-            border-radius: 8px;
-        }
-
-        .example p {
-            margin-bottom: 0.4rem;
-            font-weight: 600;
-        }
-
-        .example pre {
-            margin: 0.3rem 0 0 0;
-            background-color: #ffffff;
-            border: 1px solid #e1e4e8;
-            border-radius: 6px;
-        }
-
-        hr {
-            margin: 1.8rem 0;
-            border: none;
-            border-top: 1px solid #d0d7de;
-        }
-
-        .math {
-            font-family: monospace;
-            background-color: #f6f8fa;
-            padding: 0.1rem 0.3rem;
-            border-radius: 6px;
-        }
-
-        @media (max-width: 600px) {
-            .container {
-                padding: 1rem;
-            }
-            h1 {
-                font-size: 1.6rem;
-            }
-        }
-    </style>
-</head>
-<body>
-<div class="container">
-    <h1>1. Средний элемент</h1>
-
-    <p>Рассмотрим три числа <span class="math">a</span>, <span class="math">b</span> и <span class="math">c</span>.
-        Упорядочим их по возрастанию.<br>
-        Какое число будет стоять между двумя другими?</p>
-
-    <p>Решение этой задачи на C++ могло бы выглядеть так:</p>
-
-    <pre><code class="language-cpp">#include &lt;iostream&gt;
-#include &lt;algorithm&gt;
+#include <iostream>
+#include <algorithm>
 
 using namespace std;
 
 int main()
 {
     int a[3];
-    for (int i = 0; i &lt; 3; ++i) cin &gt;&gt; a[i];
+    for (int i = 0; i < 3; ++i) cin >> a[i];
     sort(a, a + 3);
-    cout &lt;&lt; a[1] &lt;&lt; endl;
+    cout << a[1] << endl;
     return 0;
-}</code></pre>
+}
 
-    <h2>Формат ввода</h2>
-    <p>В единственной строке записаны три целых числа <span class="math">a, b, c</span>
-        (<span class="math">−1000 ≤ a, b, c ≤ 1000</span>), числа разделены одиночными пробелами.</p>
+Формат ввода
+В единственной строке записаны три целых числа a, b, c (−1000≤a,b,c≤1000), числа разделены одиночными пробелами.
 
-    <h2>Формат вывода</h2>
-    <p>Выведите число, которое будет стоять между двумя другими после упорядочивания.</p>
+Формат вывода
+Выведите число, которое будет стоять между двумя другими после упорядочивания.
 
-    <h2>Примеры</h2>
+Примеры
 
-    <div class="example">
-        <p>Пример 1</p>
-        <p><strong>Ввод</strong></p>
-        <pre><code>1 2 3</code></pre>
-        <p><strong>Вывод</strong></p>
-        <pre><code>2</code></pre>
-    </div>
+Пример 1
+Ввод
+1 2 3
 
-    <div class="example">
-        <p>Пример 2</p>
-        <p><strong>Ввод</strong></p>
-        <pre><code>1000 -1000 0</code></pre>
-        <p><strong>Вывод</strong></p>
-        <pre><code>0</code></pre>
-    </div>
+Вывод
+2
 
-    <div class="example">
-        <p>Пример 3</p>
-        <p><strong>Ввод</strong></p>
-        <pre><code>3 1 3</code></pre>
-        <p><strong>Вывод</strong></p>
-        <pre><code>3</code></pre>
-    </div>
-</div>
-</body>
-</html>
+
+Пример 2
+Ввод
+1000 -1000 0
+
+Вывод
+0
+
+
+Пример 3
+Ввод
+3 1 3
+Вывод
+3
