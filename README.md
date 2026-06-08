@@ -13,7 +13,7 @@
   <tbody>
     <tr>
       <td>1</td>
-      <td><h2>Средний элемент</h2></td>
+      <td>Средний элемент</td>
       <td><a href="https://coderun.yandex.ru/problem/median-out-of-three"></a>/problem/median-out-of-three</td>
       <td><a href=""></a></td>
       <td><a href=""></a></td>
