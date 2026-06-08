@@ -27,36 +27,36 @@
     </tr>
     <tr>
       <td>3</td>
-      <td></td>
-      <td><a href="">/problem/</a></td>
+      <td>Вывести маршрут максимальной стоимости</td>
+      <td><a href="https://coderun.yandex.ru/problem/print-the-route-of-the-maximum-cost">/problem/print-the-route-of-the-maximum-cost</a></td>
       <td><a href="">Условие</a></td>
       <td><a href="src/main/java/testing/from1to10/ExpenciveWay_3.java">Код</a></td>
     </tr>
     <tr>
       <td>4</td>
       <td></td>
-      <td><a href="">/problem/</a></td>
+      <td><a href="https://coderun.yandex.ru/problem/knight-move">/problem/knight-move</a></td>
       <td><a href="">Условие</a></td>
       <td><a href="src/main/java/testing/from1to10/KnightsMove_4.java">Код</a></td>
     </tr>
     <tr>
       <td>5</td>
-      <td></td>
-      <td><a href="">/problem/</a></td>
+      <td>Кафе</td>
+      <td><a href="https://coderun.yandex.ru/problem/cafe">/problem/cafe</a></td>
       <td><a href="">Условие</a></td>
       <td><a href="src/main/java/testing/from1to10/Cafe_5.java">Код</a></td>
     </tr>
     <tr>
       <td>6</td>
-      <td></td>
-      <td><a href="">/problem/</a></td>
+      <td>НОП с восстановлением ответа</td>
+      <td><a href="https://coderun.yandex.ru/problem/nop-with-response-recovery">/problem/nop-with-response-recovery</a></td>
       <td><a href="">Условие</a></td>
       <td><a href="src/main/java/testing/from1to10/NOP_6.java">Код</a></td>
     </tr>
     <tr>
       <td>7</td>
-      <td></td>
-      <td><a href="">/problem/</a></td>
+      <td>Поиск в глубину</td>
+      <td><a href="https://coderun.yandex.ru/problem/search-in-depth">/problem/search-in-depth</a></td>
       <td><a href="">Условие</a></td>
       <td>
         <ul>
@@ -68,31 +68,31 @@
     </tr>
     <tr>
       <td>8</td>
-      <td></td>
-      <td><a href="">/problem/</a></td>
+      <td>Компоненты связности</td>
+      <td><a href="https://coderun.yandex.ru/problem/connectivity-components">/problem/connectivity-components</a></td>
       <td><a href="">Условие</a></td>
       <td><a href="src/main/java/testing/from1to10/ConnectComponents_8.java">Код</a></td>
     </tr>
     <tr>
       <td>9</td>
-      <td></td>
-      <td><a href="">/problem/</a></td>
+      <td>Списывание</td>
+      <td><a href="https://coderun.yandex.ru/problem/cheating">/problem/cheating</a></td>
       <td><a href="">Условие</a></td>
       <td><a href="src/main/java/testing/from1to10/BipartiteGraph_9.java">Код</a></td>
     </tr>
     <tr>
       <td>10</td>
-      <td></td>
-      <td><a href="">/problem/</a></td>
+      <td>Топологическая сортировка</td>
+      <td><a href="https://coderun.yandex.ru/problem/topological-sorting">/problem/topological-sorting</a></td>
       <td><a href="">Условие</a></td>
       <td><a href="src/main/java/testing/from1to10/TopologicalSort_10.java">Код</a></td>
     </tr>
     <tr>
       <td>11</td>
       <td></td>
-      <td><a href="src/main/java/testing/from11to20/CycleSearch_11.java">/problem/</a></td>
+      <td><a href="https://coderun.yandex.ru/problem/cycle-search">/problem/</a></td>
       <td><a href="">Условие</a></td>
-      <td><a href="">Код</a></td>
+      <td><a href="src/main/java/testing/from11to20/CycleSearch_11.java">Код</a></td>
     </tr>
     <tr>
       <td>12</td>
