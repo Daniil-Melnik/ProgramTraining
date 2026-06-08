@@ -34,7 +34,7 @@
     </tr>
     <tr>
       <td>4</td>
-      <td></td>
+      <td>Ход конём</td>
       <td><a href="https://coderun.yandex.ru/problem/knight-move">/problem/knight-move</a></td>
       <td><a href="">Условие</a></td>
       <td><a href="src/main/java/testing/from1to10/KnightsMove_4.java">Код</a></td>
