@@ -115,6 +115,13 @@
       <td><a href="task_conditions/14_fleas">Условие</a></td>
       <td><a href="src/main/java/testing/from11to20/Fleas_14.java">Код</a></td>
     </tr>
+    <tr>
+      <td>15</td>
+      <td>Путь спелеолога</td>
+      <td><a href="https://coderun.yandex.ru/problem/speleologist-way">/problem/speleologist-way</a></td>
+      <td><a href="task_conditions/15_speleologist_way">Условие</a></td>
+      <td><a href="src/main/java/testing/from11to20/SpeleologistWay_15.java">Код</a></td>
+    </tr>
     <!-- <tr>
       <td></td>
       <td></td>
