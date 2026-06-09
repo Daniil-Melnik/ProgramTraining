@@ -20,7 +20,7 @@ public class Fleas_14 {
         int T = mA[3];
         int Q = mA[4];
 
-        Map<Node, Node> parents = new HashMap<>();
+        Map<Node, Integer> parents = new HashMap<>();
 
         Set<Node> fleaNodes = new HashSet<>(Q);
         Set<Node> visited = new HashSet<>(Q);
@@ -35,12 +35,16 @@ public class Fleas_14 {
         }
 
         ArrayDeque<Node> queue = new ArrayDeque<>();
+        int sum = -1;
 
-        queue.add(new Node(S, T));
+        Node startNode = new Node(S, T);
+        queue.add(startNode);
+        parents.putIfAbsent(startNode, 0);
         while (!queue.isEmpty()){
+            //System.out.println(parents);
             Node curr = queue.poll();
             visited.add(curr);
-            System.out.println(curr);
+            //System.out.println(curr);
 
             int currX = curr.x;
             int currY = curr.y;
@@ -60,16 +64,25 @@ public class Fleas_14 {
             updateQueue(queue, currX, currY, visited, N, M, parents, curr);
         }*/
 
+        int fleaCnt = 0;
+
+        for (Node f : fleaNodes){
+            if (parents.containsKey(f)) fleaCnt++;
+            sum += parents.getOrDefault(f, 0);
+        }
+
+        writer.write(String.valueOf((sum != -1 && fleaCnt == fleaNodes.size()) ? sum + 1 : -1));
+
         reader.close();
         writer.close();
     }
 
-    private static void updateQueue(ArrayDeque<Node> queue, int currX, int currY, Set<Node> visited, int N, int M, Map<Node, Node> parents, Node current){
+    private static void updateQueue(ArrayDeque<Node> queue, int currX, int currY, Set<Node> visited, int N, int M, Map<Node, Integer> parents, Node current){
         if (currX + 1 <= N && currY + 2 <= M){
             Node n = current.getUpdatedNode(1, 2);
             if (!visited.contains(n) && !queue.contains(n)){
                 queue.add(n);
-                parents.put(n, current);
+                parents.put(n, parents.get(current) + 1);
             }
         }
 
@@ -77,7 +90,7 @@ public class Fleas_14 {
             Node n = current.getUpdatedNode(-1, 2);
             if (!visited.contains(n) && !queue.contains(n)){
                 queue.add(n);
-                parents.put(n, current);
+                parents.put(n, parents.get(current) + 1);
             }
         }
 
@@ -85,7 +98,7 @@ public class Fleas_14 {
             Node n = current.getUpdatedNode(1, -2);
             if (!visited.contains(n) && !queue.contains(n)){
                 queue.add(n);
-                parents.put(n, current);
+                parents.put(n, parents.get(current) + 1);
             }
         }
 
@@ -93,7 +106,7 @@ public class Fleas_14 {
             Node n = current.getUpdatedNode(-1, -2);
             if (!visited.contains(n) && !queue.contains(n)){
                 queue.add(n);
-                parents.put(n, current);
+                parents.put(n, parents.get(current) + 1);
             }
         }
 
@@ -101,7 +114,7 @@ public class Fleas_14 {
             Node n = current.getUpdatedNode(-2, 1);
             if (!visited.contains(n) && !queue.contains(n)){
                 queue.add(n);
-                parents.put(n, current);
+                parents.put(n, parents.get(current) + 1);
             }
         }
 
@@ -109,7 +122,7 @@ public class Fleas_14 {
             Node n = current.getUpdatedNode(2, 1);
             if (!visited.contains(n) && !queue.contains(n)){
                 queue.add(n);
-                parents.put(n, current);
+                parents.put(n, parents.get(current) + 1);
             }
         }
 
@@ -117,7 +130,7 @@ public class Fleas_14 {
             Node n = current.getUpdatedNode(-2, -1);
             if (!visited.contains(n) && !queue.contains(n)){
                 queue.add(n);
-                parents.put(n, current);
+                parents.put(n, parents.get(current) + 1);
             }
         }
 
@@ -125,7 +138,7 @@ public class Fleas_14 {
             Node n = current.getUpdatedNode(2, -1);
             if (!visited.contains(n) && !queue.contains(n)){
                 queue.add(n);
-                parents.put(n, current);
+                parents.put(n, parents.get(current) + 1);
             }
         }
     }
@@ -154,7 +167,7 @@ public class Fleas_14 {
 
         @Override
         public String toString() {
-            return String.format("%s - %s", x, y);
+            return String.format("<%s-%s>", x, y);
         }
 
         @Override

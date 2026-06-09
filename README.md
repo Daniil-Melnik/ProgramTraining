@@ -108,6 +108,13 @@
       <td><a href="task_conditions/13_the_path_in_the_graph">Условие</a></td>
       <td><a href="src/main/java/testing/from11to20/MinimalPathFull_13.java">Код</a></td>
     </tr>
+    <tr>
+      <td>14</td>
+      <td>Блохи</td>
+      <td><a href="https://coderun.yandex.ru/problem/fleas/">/problem/fleas</a></td>
+      <td><a href="task_conditions/14_fleas">Условие</a></td>
+      <td><a href="src/main/java/testing/from11to20/Fleas_14.java">Код</a></td>
+    </tr>
     <!-- <tr>
       <td></td>
       <td></td>
