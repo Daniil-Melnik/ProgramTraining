@@ -37,6 +37,7 @@ public class Metro2_16 {
                     tunnelsMap.put(String.format("%s-%s",arrI.get(j) - 1,  arrI.get(j - 1) - 1), i);
                     tunnelsMap.put(String.format("%s-%s",arrI.get(j - 1) - 1,  arrI.get(j) - 1), i);
                 }
+                //System.out.println(j + " " + lineMap);
                 lineMap.get(arrI.get(j) - 1).add(i);
             }
             //ArrayList<Integer> stations = new ArrayList<>(Arrays.stream(Arrays.stream(reader.readLine().split(" ")).mapToInt(Integer::parseInt).collect().));
@@ -67,50 +68,57 @@ public class Metro2_16 {
         int currentStation = goal;
         LinkedList<Integer> path = new LinkedList<>();
 
-        while (currentStation != start){
-            //System.out.println(k);
-            path.add(currentStation);
-            //previousStation = currentStation;
-            currentStation = parents.get(currentStation);
-        }
-        path.add(start);
-
-
-        path = path.reversed();
-
-        int transferCnt = 0;
-
-        int currentLine = -1;
-        int previousLine = 0;
-
-        if (path.size() > 1){
-            for (int i = 1; i < path.size(); i++){
-                previousLine = currentLine;
-                currentLine = tunnelsMap.get(String.format("%s-%s", path.get(i), path.get(i-1)));
-                System.out.println("curr = " + currentLine);
+        if (visited.size() == n) {
+            while (currentStation != start) {
+                //System.out.println(k);
+                path.add(currentStation);
+                //previousStation = currentStation;
+                currentStation = parents.get(currentStation);
             }
-        } else {
-            writer.write(String.valueOf(0));
-        }
 
-        /*for (Map.Entry e : tunnelsMap.entrySet()){
-            System.out.println(e.getKey() + " " + e.getValue());
-        }*/
+            path.add(start);
 
-        //System.out.println(path.reversed());
 
-        /*System.out.println(start + " " + goal);
-        System.out.println(parents);*/
+            path = path.reversed();
 
-        //System.out.println(start + " " + goal);
+            int transferCnt = 0;
 
-        //System.out.println(parents);
+            int currentLine = 0;
+            int previousLine = 0;
+            System.out.println(path);
 
-        /*for (Set<Integer> l : adjList) System.out.println(l);
-        System.out.println();
-        System.out.println(lineMap);*/
+            if (path.size() > 1) {
+                for (int i = 1; i < path.size(); i++) {
+                    previousLine = currentLine;
+                    currentLine = tunnelsMap.get(String.format("%s-%s", path.get(i), path.get(i - 1)));
+                    //System.out.println("curr = " + currentLine);
+                    if ((currentLine != previousLine) && (i > 1)) transferCnt++;
+                }
+                writer.write(String.valueOf(transferCnt));
+            } else {
+                writer.write(String.valueOf(0));
+            }
+
+            /*for (Map.Entry e : tunnelsMap.entrySet()){
+                System.out.println(e.getKey() + " " + e.getValue());
+            }*/
+
+            //System.out.println(path.reversed());
+
+            /*System.out.println(start + " " + goal);
+            System.out.println(parents);*/
+
+            //System.out.println(start + " " + goal);
+
+            //System.out.println(parents);
+
+            /*for (Set<Integer> l : adjList) System.out.println(l);
+            System.out.println();
+            System.out.println(lineMap);*/
+        } else writer.write(String.valueOf(-1));
 
         reader.close();
         writer.close();
+
     }
 }
