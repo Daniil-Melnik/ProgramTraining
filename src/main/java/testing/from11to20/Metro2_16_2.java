@@ -1,6 +1,5 @@
 package testing.from11to20;
 
-// с однолинейными станциями ОК
 
 import java.io.*;
 import java.util.*;
@@ -47,57 +46,51 @@ public class Metro2_16_2 {
         Set<Integer> goalLines = lineMap.get(goal);
         Set<Integer> startLines = lineMap.get(start);
 
-        System.out.println(startLines);
-        System.out.println(goalLines);
-
         Set<Integer> probe = new HashSet<>(Set.copyOf(lineMap.get(goal)));
         probe.retainAll(startLines);
 
-        if (!probe.isEmpty()) writer.write("FOUND - 0");
+        if (startLines.isEmpty() || goalLines.isEmpty()) writer.write(String.valueOf(-1));
+        else if (!probe.isEmpty()) writer.write(String.valueOf(0));
         else {
             Iterator<Integer> startIterator = startLines.iterator();
-            Iterator<Integer> goalIterator = goalLines.iterator();
 
-            System.out.println(startIterator.hasNext() + " " + goalIterator.hasNext());
+            int minNumLine = Integer.MAX_VALUE;
+
             while (startIterator.hasNext()){
                 int startLine = startIterator.next();
+                Iterator<Integer> goalIterator = goalLines.iterator();
                 while (goalIterator.hasNext()){
                     int goalLine = goalIterator.next();
-
-                    System.out.println(startLine + " " + goalLine);
 
                     Queue<Integer> queue = new ArrayDeque<>();
                     Set<Integer> visited = new HashSet<>();
                     queue.add(startLine);
+                    visited.add(startLine);
                     Map<Integer, Integer> parents = new HashMap<>();
                     int current = -1;
                     while (!queue.isEmpty() && current != goalLine){
                         current = queue.poll();
-                        visited.add(current);
                         for (int el : adjLineList.get(current)) {
                             if (!visited.contains(el)){
                                 queue.add(el);
+                                visited.add(el);
                                 parents.put(el, current);
                             }
                         }
                     }
                     if (current == goalLine){
                         int cnt = 0;
-                        System.out.println("OK");
                         while (current != startLine){
                             current = parents.get(current);
                             cnt++;
                         }
-                        writer.write(String.valueOf(cnt));
+                        minNumLine = Math.min(cnt, minNumLine);
                     }
                 }
             }
+            writer.write(String.valueOf(minNumLine == Integer.MAX_VALUE ? -1 : minNumLine));
         }
-
-        System.out.println(adjLineList);
-
         reader.close();
         writer.close();
-
     }
 }
