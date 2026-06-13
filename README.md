@@ -129,9 +129,9 @@
       <td><a href="task_conditions/16_metro2">Условие</a></td>
       <td>
         <ul>
-          <li><a href="src/main/java/testing/from11to20/Metro2_16_1.java">Код_1(н/з)</a></li>
-          <li><a href="src/main/java/testing/from11to20/Metro2_16_2.java">Код_2</a></li>
-          <li><a href="src/main/java/testing/from11to20/Metro2_16_3.java">Код_3</a></li>
+          <li><a href="src/main/java/testing/from11to20/Metro2_16_1.java">Код(нз)</a></li>
+          <li><a href="src/main/java/testing/from11to20/Metro2_16_2.java">Код_1</a></li>
+          <li><a href="src/main/java/testing/from11to20/Metro2_16_3.java">Код_2</a></li>
         </ul>
       </td>
     </tr>
