@@ -122,6 +122,19 @@
       <td><a href="task_conditions/15_speleologist_way">Условие</a></td>
       <td><a href="src/main/java/testing/from11to20/SpeleologistWay_15.java">Код</a></td>
     </tr>
+    <tr>
+      <td>16</td>
+      <td>Пересадки</td>
+      <td><a href="https://coderun.yandex.ru/problem/metro-2">/problem/metro-2</a></td>
+      <td><a href="task_conditions/16_metro2">Условие</a></td>
+      <td>
+        <ul>
+          <li><a href="src/main/java/testing/from11to20/Metro2_16_1.java">Код_1 (незачет)</a></li>
+          <li><a href="src/main/java/testing/from11to20/Metro2_16_2.java">Код_2 (зачет)</a></li>
+          <li><a href="src/main/java/testing/from11to20/Metro2_16_3.java">Код_3 (зачет)</a></li>
+        </ul>
+      </td>
+    </tr>
     <!-- <tr>
       <td></td>
       <td></td>
