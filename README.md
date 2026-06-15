@@ -138,7 +138,7 @@
     <tr>
       <td>17</td>
       <td>Конвейер</td>
-      <td><a href="https://coderun.yandex.ru/problem/conveyor/">/problem/metro-2</a></td>
+      <td><a href="https://coderun.yandex.ru/problem/conveyor/">/problem/conveyor</a></td>
       <td><a href="task_conditions/17_conveyor">Условие</a></td>
       <td><a href="src/main/java/testing/from11to20/Conveyor_17.java">Код</a></td>
     </tr>
