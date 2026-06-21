@@ -11,7 +11,7 @@ public class ValueOfAnArithmeticExpression_18_2 {
     public static void main(String ... args) throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
-        ArithmeticParser parser = new ArithmeticParser(stringToTokens(reader.readLine()));
+        Parser parser = new Parser(stringToTokens(reader.readLine()));
 
         reader.close();
 
@@ -52,69 +52,52 @@ public class ValueOfAnArithmeticExpression_18_2 {
         return listOfTokens.toArray(new String[0]);
     }
 
-    public static class ArithmeticParser{
+    public static class Parser{
         private String [] tokens;
         private int pos = 0;
 
-        public ArithmeticParser(String [] t){
+        public Parser(String [] t){
             tokens = t;
         }
 
         public double parse(){
-            double result = expression();
-            return result;
+            return expression();
         }
 
         public double expression(){
-            double first = term();
+            boolean isBrackets = false;
 
-            while (pos < tokens.length){
+            if (tokens[pos].equals("(")) { pos++; isBrackets = true;}
+
+            if (!isNumber(tokens[pos])) throw new IllegalStateException("Ожидалось число");
+
+            double left = Double.parseDouble(tokens[pos]);
+            pos++;
+
+            while (pos < tokens.length) {
                 String op = tokens[pos];
-                if (!op.equals("+") && !op.equals("-")){
-                    break;
-                } else pos++;
+                if (!op.equals("+") && !op.equals("-")) break;
+                else pos++;
 
-                double second = term();
+                double right;
 
-                if (op.equals("+")) first += second;
-                else first -= second;
-            }
+                if (tokens[pos].equals("(")) {
+                    right = expression();
+                } else {
+                    if (!isNumber(tokens[pos])) throw new IllegalStateException("Ожидалось число");
 
-            return first;
-        }
-
-        public double term(){
-            double first = factor();
-
-            while (pos < tokens.length){
-                String op = tokens[pos];
-                if (!op.equals("*") && !op.equals("/")){
-                    break;
-                } else  pos++;
-
-                double second = factor();
-
-                if (op.equals("*")) first *= second;
-                else first /= second;
-            }
-
-            return first;
-        }
-
-        public double factor(){
-            String next = tokens[pos];
-            if (isNumber(next)){
-                pos++;
-                return Double.parseDouble(next);
-            } else if (next.equals("(")) {
-                pos++;
-                double result = expression();
-                if (tokens[pos].equals(")")) {
+                    right = Double.parseDouble(tokens[pos]);
                     pos++;
-                    return result;
                 }
-                else throw new IllegalStateException("Ожидалась ')'");
-            } else throw new IllegalStateException("Ожидалось число, а встречено " + next);
+
+                if (op.equals("+")) left += right;
+                else left -= right;
+            }
+
+            if (!(pos < tokens.length && isBrackets && tokens[pos].equals(")"))) throw new IllegalStateException("Ожидалась закрывающая скобка");
+            else pos++;
+
+            return left;
         }
 
         private boolean isNumber(String s){
