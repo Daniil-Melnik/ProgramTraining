@@ -58,7 +58,6 @@ public class ValueOfAnArithmeticExpression_18 {
                 throw new IllegalStateException("Некорректный символ - " + currCh);
             }
         }
-
         return listOfTokens.toArray(new String[0]);
     }
 
