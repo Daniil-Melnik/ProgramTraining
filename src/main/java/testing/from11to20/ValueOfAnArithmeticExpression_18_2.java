@@ -3,6 +3,7 @@ package testing.from11to20;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Set;
 
@@ -11,7 +12,8 @@ public class ValueOfAnArithmeticExpression_18_2 {
     public static void main(String ... args) throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
-        Parser parser = new Parser(stringToTokens(reader.readLine()));
+        String input = reader.readLine();
+        Parser parser = new Parser(stringToTokens(input));
 
         reader.close();
 
@@ -45,6 +47,15 @@ public class ValueOfAnArithmeticExpression_18_2 {
                     currCh = pS.charAt(pos);
                 }
                 listOfTokens.add(numberBuilder.toString());
+            } else if (currCh == 's'){
+                if (pos + 3 < pS.length()){
+                    if (pS.charAt(pos+1) == 'q' &&
+                    pS.charAt(pos+2) == 'r' &&
+                    pS.charAt(pos + 3) == 't') {
+                        listOfTokens.add("sqrt");
+                        pos += 4;
+                    }
+                }
             } else {
                 throw new IllegalStateException("Некорректный символ - " + currCh);
             }
@@ -67,16 +78,14 @@ public class ValueOfAnArithmeticExpression_18_2 {
 
 
         public double expression(){
-            if (!isNumber(tokens[pos])) throw new IllegalStateException("Ожидалось число");
-
-            double left = factor();
+            double left = term();
 
             while (pos < tokens.length) {
                 String op = tokens[pos];
                 if (!op.equals("+") && !op.equals("-")) break;
                 else pos++;
 
-                double right = factor();
+                double right = term();
 
                 if (op.equals("+")) left += right;
                 else left -= right;
@@ -84,11 +93,44 @@ public class ValueOfAnArithmeticExpression_18_2 {
             return left;
         }
 
+        public double term(){
+            double left = factor();
+
+            while (pos < tokens.length){
+                String op = tokens[pos];
+                if (!op.equals("*") && !op.equals("/")) break;
+                else pos++;
+
+                double right = factor();
+
+                if (op.equals("*")) left *= right;
+                else left /= right;
+            }
+
+            return left;
+        }
+
         public double factor(){
             String next = tokens[pos];
 
+            if (next.equals("sqrt")){
+                pos++;
+                return Math.sqrt(factor());
+            }
+
             if (next.equals("(")) {
                 pos++;
+
+                if (tokens[pos].equals("-")){
+                    pos++;
+                    return -factor();
+                }
+
+                if (tokens[pos].equals("+")){
+                    pos++;
+                    return factor();
+                }
+
                 double result = expression();
                 if (pos >= tokens.length) throw new IllegalStateException("Неожиданное окончание выражения");
                 if (tokens[pos].equals(")")) pos++;
