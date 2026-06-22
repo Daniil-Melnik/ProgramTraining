@@ -65,34 +65,69 @@ public class ValueOfAnArithmeticExpression_18_2 {
                     if (pS.charAt(pos+1) == 'o'&&
                     pS.charAt(pos+2) == 'w' &&
                     pS.charAt(pos+3) == '(' ){
+                        listOfTokens.add("pow");
+
                         int initPos = pos + 4;
-                        StringBuilder argL = new StringBuilder();
-                        StringBuilder argR = new StringBuilder();
-                        while (Character.isDigit(pS.charAt(initPos))){
-                            argL.append(pS.charAt(initPos));
+
+                        if (pS.charAt(initPos) == '('){
+                            listOfTokens.add("(");
                             initPos++;
+                            while (pS.charAt(initPos) != ')'){
+                                StringBuilder bb = new StringBuilder();
+                                while (Character.isDigit(pS.charAt(initPos))){
+                                    bb.append(pS.charAt(initPos));
+                                    initPos++;
+                                }
+
+                                listOfTokens.add(bb.toString());
+
+                                if (operators.contains(pS.charAt(initPos))){
+                                    listOfTokens.add(String.valueOf(pS.charAt(initPos)));
+                                    initPos++;
+                                }
+                            }
+                            listOfTokens.add(")");
+                            initPos++;
+                        } else {
+                            StringBuilder builder = new StringBuilder();
+                            while (Character.isDigit(pS.charAt(initPos))){
+                                builder.append(pS.charAt(initPos));
+                                initPos++;
+                            }
+                            listOfTokens.add(String.valueOf(builder.toString()));
                         }
 
                         if (pS.charAt(initPos) == ',') initPos++;
-                        else throw new IllegalStateException("Ожидалась запятая");
 
-                        while (Character.isDigit(pS.charAt(initPos))){
-                            argR.append(pS.charAt(initPos));
+                        if (pS.charAt(initPos) == '('){
+                            listOfTokens.add("(");
                             initPos++;
+                            while (pS.charAt(initPos) != ')'){
+                                StringBuilder bb = new StringBuilder();
+                                while (Character.isDigit(pS.charAt(initPos))){
+                                    bb.append(pS.charAt(initPos));
+                                    initPos++;
+                                }
+
+                                listOfTokens.add(bb.toString());
+
+                                if (operators.contains(pS.charAt(initPos))){
+                                    listOfTokens.add(String.valueOf(pS.charAt(initPos)));
+                                    initPos++;
+                                }
+                            }
+                            listOfTokens.add(")");
+                            initPos++;
+                        } else {
+                            StringBuilder builder = new StringBuilder();
+                            while (Character.isDigit(pS.charAt(initPos))){
+                                builder.append(pS.charAt(initPos));
+                                initPos++;
+                            }
+                            listOfTokens.add(builder.toString());
                         }
 
-                        if (pS.charAt(initPos) == ')') initPos++;
-                        else throw new IllegalStateException("Ожидалась закрывающая скобка");
-
-                        if (!argL.isEmpty() && !argR.isEmpty()){
-                            listOfTokens.add("pow");
-                            listOfTokens.add(argL.toString());
-                            listOfTokens.add(argR.toString());
-
-                            pos = initPos;
-                        }
-                        /*pos += 2;
-                        pos++;*/
+                        pos = initPos+1;
                     }
 
                 }
@@ -102,6 +137,8 @@ public class ValueOfAnArithmeticExpression_18_2 {
         }
         return listOfTokens.toArray(new String[0]);
     }
+
+
 
     public static class Parser{
         private String [] tokens;
