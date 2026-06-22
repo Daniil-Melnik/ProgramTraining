@@ -64,40 +64,42 @@ public class ValueOfAnArithmeticExpression_18_2 {
             return expression();
         }
 
+
+
         public double expression(){
-            boolean isBrackets = false;
-
-            if (tokens[pos].equals("(")) { pos++; isBrackets = true;}
-
             if (!isNumber(tokens[pos])) throw new IllegalStateException("Ожидалось число");
 
-            double left = Double.parseDouble(tokens[pos]);
-            pos++;
+            double left = factor();
 
             while (pos < tokens.length) {
                 String op = tokens[pos];
                 if (!op.equals("+") && !op.equals("-")) break;
                 else pos++;
 
-                double right;
-
-                if (tokens[pos].equals("(")) {
-                    right = expression();
-                } else {
-                    if (!isNumber(tokens[pos])) throw new IllegalStateException("Ожидалось число");
-
-                    right = Double.parseDouble(tokens[pos]);
-                    pos++;
-                }
+                double right = factor();
 
                 if (op.equals("+")) left += right;
                 else left -= right;
             }
-
-            if (!(pos < tokens.length && isBrackets && tokens[pos].equals(")"))) throw new IllegalStateException("Ожидалась закрывающая скобка");
-            else pos++;
-
             return left;
+        }
+
+        public double factor(){
+            String next = tokens[pos];
+
+            if (next.equals("(")) {
+                pos++;
+                double result = expression();
+                if (pos >= tokens.length) throw new IllegalStateException("Неожиданное окончание выражения");
+                if (tokens[pos].equals(")")) pos++;
+                else throw new IllegalStateException("Ожидалась закрывающая скобка");
+                return result;
+            }
+            else if (isNumber(next)) {
+                pos++;
+                return Double.parseDouble(next);
+            }
+            else throw new IllegalStateException("Встречено что-то непонятное: " + next);
         }
 
         private boolean isNumber(String s){
