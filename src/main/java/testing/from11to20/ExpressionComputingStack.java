@@ -5,6 +5,14 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+/*
+* тесты
+* 2*(4-(-(3+1)))
+* 2*(4-(-5))
+* 2+3*sqrt(16+48)
+* 2+3*sqrt(pow(8,2))
+* */
+
 public class ExpressionComputingStack {
 
     private final static Set<String> operators = Set.of("+", "-", "*", "/", "sqrt", "pow");
