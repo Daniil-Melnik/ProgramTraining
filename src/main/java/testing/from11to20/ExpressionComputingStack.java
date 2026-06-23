@@ -7,16 +7,20 @@ import java.io.InputStreamReader;
 
 public class ExpressionComputingStack {
 
+    private final static Set<String> operators = Set.of("+", "-", "*", "/");
+
     public static void main(String ... args) throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         String input = reader.readLine();
         reader.close();
 
-        System.out.println(Arrays.toString(toReversePolishNotation(stringToTokens(input))));
+        //System.out.println(Arrays.toString());
+
+        System.out.println(compExpression(toReversePolishNotation(stringToTokens(input))));
     }
 
     private static String[] toReversePolishNotation(String [] tokens){
-        Set<String> operators = Set.of("+", "-", "*", "/");
+
 
         Stack<String> operStack = new Stack<>();
 
@@ -58,6 +62,28 @@ public class ExpressionComputingStack {
         while (!operStack.isEmpty()) reverseNotation.add(operStack.pop());
 
         return reverseNotation.toArray(new String[0]);
+    }
+
+    private static double compExpression(String [] reversedPolishNotation){
+        Stack<Double> calcStack = new Stack<>();
+        for (String t : reversedPolishNotation){
+            if (isNumber(t)){
+                calcStack.add(Double.parseDouble(t));
+            } else if (operators.contains(t)){
+                double right = calcStack.pop();
+                double left = calcStack.pop();
+
+                switch (t){
+                    case "+": { left += right; break;}
+                    case "-": { left -= right; break;}
+                    case "*": { left *= right; break;}
+                    case "/": { left /= right; break;}
+                }
+
+                calcStack.add(left);
+            }
+        }
+        return calcStack.pop();
     }
 
     private static boolean isNumber(String numStr){
