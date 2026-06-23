@@ -3,13 +3,12 @@ package testing.from11to20;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Set;
 
 // доработать парсинг выражения из строки в токены
 
-public class ValueOfAnArithmeticExpression_18_2 {
+public class ExpressionComputingRecurrency {
 
     public static void main(String ... args) throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
