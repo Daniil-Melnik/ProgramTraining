@@ -8,28 +8,42 @@ import java.io.InputStreamReader;
 public class ExpressionComputingStack {
 
     private final static Set<String> operators = Set.of("+", "-", "*", "/");
+    private final static Set<String> unaryOperators = Set.of("+", "-");
+    private final static Set<String> unaryOperatorsGramma = Set.of("u+", "u-");
 
     public static void main(String ... args) throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         String input = reader.readLine();
         reader.close();
 
-        //System.out.println(Arrays.toString());
+        //System.out.println(Arrays.toString(toReversePolishNotation(stringToTokens(input))));
 
         System.out.println(compExpression(toReversePolishNotation(stringToTokens(input))));
     }
 
     private static String[] toReversePolishNotation(String [] tokens){
 
-
         Stack<String> operStack = new Stack<>();
 
         List<String> reverseNotation = new ArrayList<>(tokens.length);
-        for (String t : tokens){
+        for (int i = 0; i < tokens.length; i++){
+            String t = tokens[i];
+            String nT = "";
 
+            if (i < tokens.length - 1) nT = tokens[i + 1];
 
             if (isNumber(t)){
                 reverseNotation.add(t);
+            }
+
+            // Если встретили откр. скобку - положить её в стек операторов
+            else if (t.equals("(")) {
+                operStack.add(t);
+                if (unaryOperators.contains(nT)){
+                    if (nT.equals("-")) operStack.add("u-");
+                    else if (nT.equals("+")) operStack.add("u+");
+                    i++;
+                }
             }
 
             // Если встретили бинарный оператор - переложить из стека (до упора в более слабый)
@@ -40,11 +54,6 @@ public class ExpressionComputingStack {
                 while (!operStack.isEmpty() && (getPriority(operStack.peek()) >= getPriority(t))){
                     reverseNotation.add(operStack.pop());
                 }
-                operStack.add(t);
-            }
-
-            // Если встретили откр. скобку - положить её в стек операторов
-            else if (t.equals("(")) {
                 operStack.add(t);
             }
 
@@ -81,6 +90,18 @@ public class ExpressionComputingStack {
                 }
 
                 calcStack.add(left);
+            } else if (unaryOperatorsGramma.contains(t)){
+                double right = calcStack.pop();
+                switch (t){
+                    case "u+":
+                        right = right;
+                        break;
+
+                    case "u-":
+                        right = -right;
+                        break;
+                }
+                calcStack.add(right);
             }
         }
         return calcStack.pop();
@@ -103,6 +124,8 @@ public class ExpressionComputingStack {
             case "*" -> 2;
             case "/" -> 2;
             case "(" -> 0;
+            case "u+" -> 3;
+            case "u-" -> 3;
             default -> throw new IllegalStateException("Ижмдался знак операции");
         };
     }
