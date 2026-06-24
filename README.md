@@ -142,6 +142,23 @@
       <td><a href="task_conditions/17_conveyor">Условие</a></td>
       <td><a href="src/main/java/testing/from11to20/Conveyor_17.java">Код</a></td>
     </tr>
+    <tr>
+      <td>18</td>
+      <td>Значение арифметического выражения</td>
+      <td><a href="https://coderun.yandex.ru/problem/the-value-of-an-arithmetic-expression">/problem/the-value-of-an-arithmetic-expression</a></td>
+      <td><a href="task_conditions/18_value_of_an_arithmetic_expression">Условие</a></td>
+      <td><a href="src/main/java/testing/from11to20/ValueOfAnArithmeticExpression_18.java">Код</a></td>
+    </tr>
+    <tr>
+      <td>19</td>
+      <td>Значение логического выражения</td>
+      <td><a href="https://coderun.yandex.ru/problem/the-value-of-a-boolean-expression">/problem/the-value-of-a-boolean-expression</a></td>
+      <td><a href="task_conditions/19_value_of_a_boolean_expression">Условие</a></td>
+      <td><ul>
+<li><a href="src/main/java/testing/from11to20/ValueOfABooleanExpression_19.java">Код_1</a></li>
+<li><a href="src/main/java/testing/from11to20/ValueOfABooleanExpression_19_2.java">Код_2</a></li>
+        </ul></td>
+    </tr>
     <!-- <tr>
       <td></td>
       <td></td>
