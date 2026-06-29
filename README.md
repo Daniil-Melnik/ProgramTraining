@@ -176,6 +176,14 @@
             <li><a href="src/main/java/testing/from21to30/CorruptedXml_21_2.java">Код_2</a></li>
         </ul></td>
     </tr>
+    <tr>
+      <td>22</td>
+      <td>Минимум на отрезке</td>
+      <td><a href="https://coderun.yandex.ru/problem/minimum-of-the-segment">/problem/minimum-of-the-segment</a></td>
+      <td><a href="task_conditions/22_minimum_of_the_segment">Условие</a></td>
+      <td><a href="src/main/java/testing/from21to30/MinimumOfTheSegment_22.java">Код</a></td>
+    </tr>
+    <tr>
     <!-- <tr>
       <td></td>
       <td></td>
