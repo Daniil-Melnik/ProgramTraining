@@ -184,6 +184,20 @@
       <td><a href="src/main/java/testing/from21to30/MinimumOfTheSegment_22.java">Код</a></td>
     </tr>
     <tr>
+      <td>23</td>
+      <td>Гоблины и шаманы</td>
+      <td><a href="https://coderun.yandex.ru/problem/goblins-and-chess">/problem/goblins-and-chess</a></td>
+      <td><a href="task_conditions/23_goblins_and_chess">Условие</a></td>
+      <td><a href="src/main/java/testing/from21to30/GoblinsAndChess_23.java">Код</a></td>
+    </tr>
+    <tr>
+      <td>24</td>
+      <td>Тупики</td>
+      <td><a href="https://coderun.yandex.ru/problem/dead-ends">/problem/dead-ends</a></td>
+      <td><a href="task_conditions/24_dead_ends">Условие</a></td>
+      <td><a href="src/main/java/testing/from21to30/DeadEnds_24.java">Код</a></td>
+    </tr>
+
     <!-- <tr>
       <td></td>
       <td></td>
