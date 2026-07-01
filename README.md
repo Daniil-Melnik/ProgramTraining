@@ -197,6 +197,20 @@
       <td><a href="task_conditions/24_dead_ends">Условие</a></td>
       <td><a href="src/main/java/testing/from21to30/DeadEnds_24.java">Код</a></td>
     </tr>
+    <tr>
+      <td>25</td>
+      <td>Коммерческий калькулятор</td>
+      <td><a href="https://coderun.yandex.ru/problem/commercial-calculator">/problem/commercial-calculator</a></td>
+      <td><a href="task_conditions/25_commercial_calculator">Условие</a></td>
+      <td><a href="src/main/java/testing/from21to30/СommercialСalculator_25.java">Код</a></td>
+    </tr>
+    <tr>
+      <td>26</td>
+      <td>Машинки</td>
+      <td><a href="https://coderun.yandex.ru/problem/avto">/problem/avto</a></td>
+      <td><a href="task_conditions/26_avto">Условие</a></td>
+      <td><a href="src/main/java/testing/from21to30/Avto_26.java">Код</a></td>
+    </tr>
 
     <!-- <tr>
       <td></td>
