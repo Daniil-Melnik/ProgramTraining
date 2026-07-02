@@ -9,6 +9,12 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.PriorityQueue;
 
+/*
+* Жадность по минимальности числа: меньшее в голове кучи
+* Пока в куче больше одного числа: берём из головы два, перемножаем, вычисляем таксу, перемноженный результат возвращаем в кучу
+* последний оставшийся элемент - результат вычислений, а имеемая в этот момент суммарная такса - итоговая минимальная
+* */
+
 public class СommercialСalculator_25 {
     public static void main(String[] args) throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
